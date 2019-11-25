@@ -1,0 +1,83 @@
+#include <iostream>
+
+class Account {
+
+ private:
+
+    int accountBalance;
+
+ public:
+
+    explicit Account(int);
+
+    // GETTERS
+
+    int getBalance();
+
+    void credit(int);  // credit account
+
+    void debit(int);   // debit account
+
+};
+
+// constructor
+
+Account::Account(int balance) {
+
+    if (balance >= 0) {
+
+        accountBalance = balance;
+
+    } else {
+
+        std::cout << "Error: Unable to initialise balance. Invalid entry." << std::endl;
+
+    }
+
+}
+
+// GETTERS
+
+int Account::getBalance() { return accountBalance; }
+
+// Increase current balance by amount
+
+void Account::credit(int amount) {
+
+    if (amount > 0) { accountBalance += amount; }
+
+}
+
+// Decrease current balance by amount
+
+void Account::debit(int amount) {
+
+    if (amount <= accountBalance) { accountBalance -= amount; }
+
+}
+
+int main(int argc, const char *argv[]) {
+
+    Account acc1(500);
+
+    Account acc2(1500);
+
+    std::cout << "acc1 initial balance: " << acc1.getBalance() << std::endl;
+
+    std::cout << "acc2 initial balance: " << acc2.getBalance() << std::endl;
+
+    acc1.credit(150);
+
+    acc1.debit(50);
+
+    acc2.credit(500);
+
+    acc2.debit(2000);
+
+    std::cout << "acc1 new balance: " << acc1.getBalance() << std::endl;
+
+    std::cout << "acc2 new balance: " << acc2.getBalance() << std::endl;
+
+    return 0;
+
+}
